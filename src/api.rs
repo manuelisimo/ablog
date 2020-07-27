@@ -1,4 +1,4 @@
-use actix_web::{web, Responder};
+use actix_web::{web, Responder, HttpResponse, Error};
 use crate::db;
 use crate::models;
 
@@ -14,11 +14,12 @@ struct PostList {
 
 pub async fn index(
     pool: web::Data<db::LitePool>
-) -> impl Responder {
+) -> Result<HttpResponse, Error> {
     let posts = db::get_posts(&pool)
         .expect("Something weird happened");
     let context = PostList {
         posts,
     };
-    context.render_once().unwrap()
+
+    Ok(HttpResponse::Ok().body(context.render_once().unwrap()))
 }
