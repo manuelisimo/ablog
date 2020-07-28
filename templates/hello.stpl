@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/static/styles.css" />
 <title>Hello there</title>
 </head>
 <body>
     <h1>this is a blog</h1>
+    <main>
     <% for post in &posts { %>
         <div>
-            <h3><%= post.title %></h3>
-            <div><%= post.body %></div>
+            <a href="/post/<%= post.web_name %>">
+                <h3>
+                    <%= post.title %>
+                </h3>
+                <div>
+                    <%= post.intro %>
+                </div>
+            </a>
         </div>
     <% } %>
+    </main>
 </body>
 </html>

@@ -5,7 +5,6 @@ use std::path::PathBuf;
 
 use crate::db;
 use crate::models;
-// use crate::db::get_image_record;
 
 #[derive(Deserialize)]
 pub struct ImageParams {

@@ -5,7 +5,6 @@ use crate::models::Image;
 use crate::diesel::prelude::*;
 use std::error::Error;
 
-
 pub type LitePool = Pool<ConnectionManager<SqliteConnection>>;
 type LitePooledConnection = PooledConnection<ConnectionManager<SqliteConnection>>;
 
@@ -20,7 +19,8 @@ pub fn get_connection(pool: &LitePool) -> Result<LitePooledConnection, PoolError
 
 pub fn get_posts(pool: &LitePool) -> Result<Vec<Post>, String> {
     use crate::schema::post::dsl::*;
-    let connection = get_connection(pool).map_err(|e| e.to_string())?;
+    let connection = get_connection(pool)
+        .map_err(|e| e.to_string())?;
 
     post.filter(published.eq(true))
         .limit(20)
@@ -28,9 +28,20 @@ pub fn get_posts(pool: &LitePool) -> Result<Vec<Post>, String> {
         .map_err(|_| "Things went wrong trying to get posts".to_string())
 }
 
+pub fn get_post(post_web_name: String, pool: &LitePool) -> Result<Post, String> {
+    use crate::schema::post::dsl::*;
+    let connection = get_connection(pool)
+        .map_err(|e| e.to_string())?;
+
+    post.filter(web_name.eq(post_web_name))
+        .get_result::<Post>(&connection)
+        .map_err(|_| "Post not found".to_string())
+}
+
 pub fn get_image_record(image_id: i32, pool: &LitePool) -> Result<Image, String> {
     use crate::schema::image::dsl::*;
-    let connection = get_connection(pool).map_err(|e| e.to_string())?;
+    let connection = get_connection(pool)
+        .map_err(|e| e.to_string())?;
 
     image.filter(id.eq(image_id))
         .get_result::<Image>(&connection)
