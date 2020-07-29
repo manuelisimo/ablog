@@ -39,9 +39,10 @@ async fn main() -> std::io::Result<()> {
             .service(web::resource("/").route(web::get().to(api::index)))
             .service(web::resource("/post/{post_web_name}").route(web::get().to(api::post)))
             .service(web::resource("/image/{id}").route(web::get().to(images::get_image)))
-            .service(actix_files::Files::new(&static_path, "static/"))
+            .service(actix_files::Files::new(&static_path, &static_dir))
     })
-        .bind("localhost:8080")?
+        .bind("0.0.0.0:8080")?
+        .bind("[::]:8080")?
         .run()
         .await
 }

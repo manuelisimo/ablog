@@ -1,9 +1,7 @@
-// use diesel::sqlite::SqliteConnection;
 use diesel::r2d2::{ConnectionManager, Pool, PoolError, PooledConnection};
 use crate::models::Post;
 use crate::models::Image;
 use crate::diesel::prelude::*;
-use std::error::Error;
 
 pub type LitePool = Pool<ConnectionManager<SqliteConnection>>;
 type LitePooledConnection = PooledConnection<ConnectionManager<SqliteConnection>>;

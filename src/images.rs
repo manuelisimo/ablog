@@ -1,10 +1,8 @@
-use actix_web::{web, Responder, HttpResponse, error, Error, Result};
+use actix_web::{web, error, Error, Result};
 use actix_files::NamedFile;
 use serde::Deserialize;
-use std::path::PathBuf;
 
 use crate::db;
-use crate::models;
 
 #[derive(Deserialize)]
 pub struct ImageParams {

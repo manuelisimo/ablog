@@ -1,4 +1,4 @@
-use actix_web::{web, Responder, HttpResponse, Error, error};
+use actix_web::{web, HttpResponse, Error, error};
 use serde::Deserialize;
 use sailfish::TemplateOnce;
 use comrak::{markdown_to_html, ComrakOptions};
@@ -7,7 +7,7 @@ use crate::models;
 
 
 #[derive(TemplateOnce)]
-#[template(path = "hello.stpl")]
+#[template(path = "landing.html")]
 struct PostList {
     posts: Vec<models::Post>
 }
@@ -30,7 +30,7 @@ pub struct PostParams {
 }
 
 #[derive(TemplateOnce)]
-#[template(path = "post.stpl")]
+#[template(path = "post.html")]
 struct PostTemplate {
     post: models::Post,
 }
