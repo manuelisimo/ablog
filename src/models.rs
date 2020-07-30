@@ -1,5 +1,4 @@
 use chrono::NaiveDateTime;
-// use chrono::
 
 #[derive(Queryable)]
 pub struct Post {

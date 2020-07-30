@@ -2,9 +2,6 @@
 extern crate diesel;
 #[macro_use]
 extern crate sailfish_macros;
-#[macro_use]
-extern crate log;
-
 
 use actix_web::{web, App, HttpServer};
 use actix_web::middleware::{Logger};
@@ -36,9 +33,16 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .data(pool.clone())
             .wrap(Logger::default())
-            .service(web::resource("/").route(web::get().to(api::index)))
-            .service(web::resource("/post/{post_web_name}").route(web::get().to(api::post)))
-            .service(web::resource("/image/{id}").route(web::get().to(images::get_image)))
+            .service(web::resource("/")
+                .route(web::get().to(api::index)))
+            .service(web::resource("/post/{post_web_name}")
+                .route(web::get().to(api::post)))
+            .service(web::resource("/image/{id}")
+                .route(web::get().to(images::get_image)))
+            .service(web::resource("/fortune")
+                .route(web::get().to(api::fortune)))
+            .service(web::resource("/favicon.ico", )
+                .route(web::get().to(api::favicon)))
             .service(actix_files::Files::new(&static_path, &static_dir))
     })
         .bind("0.0.0.0:8080")?
