@@ -53,14 +53,20 @@ html {
     margin: 0;
 
     header {
-      border 1px dashed blue;
       width: 100%;
       display: flex;
       justify-content: space-between;
       position: sticky;
       top: -1px;
       background-color: bgcolor;
+      height: 48px;
       line-height: 48px;
+      box-shadow: 0px 8px 12px 4px alpha(base1, 0.3);
+
+      @media (max-width: 1081px) {
+        height: 96px;
+        line-height 96px;
+      }
 
       .left {
         display: flex;
@@ -69,7 +75,21 @@ html {
         .logo {
           width: 48px;
           height: 48px;
+
+          @media (max-width: 1081px) {
+            width 96px;
+            height: 96px;
+          }
         }
+        &>* {
+          margin-right: 24px;
+          @media (max-width: 1081px) {
+            margin-right: 48px;
+          }
+        }
+      }
+
+      .right {
         &>* {
           margin-right: 24px;
         }
@@ -82,6 +102,7 @@ html {
       padding: 1.5rem;
       margin-left: 8px;
       margin-right: 8px;
+      box-shadow: 0px 8px 12px 4px alpha(base1, 0.3);
 
       @media (max-width: 1081px) and (min-width: 720px) {
         max-width 95vw;
@@ -109,6 +130,7 @@ html {
       justify-content: center;
       font-size: 12px;
       color: base01;
+      margin: 48px 0;
     }
   }
 }
