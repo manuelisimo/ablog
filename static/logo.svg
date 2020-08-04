@@ -1,34 +1,12 @@
-<svg width="240px" height="240px" xmlns="http://www.w3.org/2000/svg"
-     viewBox="210.0199951171875 3.7599914550781364 79.96000976562499 142.48001708984373"
-     style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;" preserveAspectRatio="xMidYMid">
-    <defs>
-        <filter id="editing-hole" x="-100%" y="-100%" width="300%" height="300%">
-            <feFlood flood-color="#000" result="black"></feFlood>
-            <feMorphology operator="dilate" radius="2" in="SourceGraphic" result="erode"></feMorphology>
-            <feGaussianBlur in="erode" stdDeviation="4" result="blur"></feGaussianBlur>
-            <feOffset in="blur" dx="2" dy="2" result="offset"></feOffset>
-            <feComposite operator="atop" in="offset" in2="#cb4b16" result="merge"></feComposite>
-            <feComposite operator="in" in="merge" in2="SourceGraphic" result="inner-shadow"></feComposite>
-        </filter>
-    </defs>
-    <g filter="url(#editing-hole)">
-        <g transform="translate(189.6150074005127, 92.46999931335449)">
-          <path class="logo-lt" d="M36.61-36.03L36.61-31.55L7.30-18.62L7.30-18.50L36.61-5.57L36.61-1.09L4.16-15.94L4.16-21.18L36.61-36.03Z"
-                fill="#dc322f"></path>
-        </g>
-        <g transform="translate(237, 97)">
-          <path class="logo-slash" d="M24.26-46.72L29.25-46.72L7.17 2.56L2.24 2.56L24.26-46.72Z" fill="#dc322f"></path>
-        </g>
-        <g transform="translate(267.69500923156738, 92.46999931335449)">
-            <path class="logo-gt" d="M35.33-18.62L6.08-31.55L6.08-36.03L38.53-21.18L38.53-15.94L6.08-1.09L6.08-5.57L35.33-18.50L35.33-18.62Z"
-                  fill="#dc322f"></path>
-        </g>
-    </g>
-    <style>text {
-        font-size: 64px;
-        font-family: Arial Black;
-        dominant-baseline: central;
-        text-anchor: middle;
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        text {
+            font: bold 32px 'Sans serif';
+            fill: #93a1a1;
         }
     </style>
+
+    <text class="lt" x="2" y="40" >&lt;</text>
+    <text class="slash" x="28" y="42" >/</text>
+    <text class="gt" x="44" y="40" >&gt;</text>
 </svg>

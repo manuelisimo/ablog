@@ -24,13 +24,13 @@
     <meta name="msapplication-square310x310logo" content="/static/favicons/mstile-310x310.png" />
     <link rel="stylesheet" href="/static/blog.css" />
     <script src="/static/blog.js"></script>
-    <title>Hello there</title>
+    <title>Manuel's Blog - <%= post.title %></title>
 </head>
 <body>
     <header>
         <div class="left">
             <a href="/" >
-                <img class="logo" src="/static/logo.svg" alt="logo" />
+                <% include!("../static/logo.svg"); %>
             </a>
             <span>Manuel Aguilera</span>
         </div>
