@@ -90,35 +90,40 @@ html {
         display: flex;
         justify-content: flex-start;
 
-        svg {
-          width: 48px;
-          height: 48px;
-          fill: fg_color;
+        a {
+          text-decoration: none;
 
-          &>.lt {
-            transition: transform 1s;
-            transform: translate(58px, 16px) rotate(90deg);
-          }
-          &>.gt {
-            transition: transform 1s;
-            transform:  translate(7px, 80px) rotate(-90deg);
-          }
-          &>.slash {
-            transition: transform 1s;
-            transform: translate(13px, 82px) rotate(-110deg);
-          }
+          svg {
+            width: 48px;
+            height: 48px;
+            fill: fg_color;
 
-          &:hover {
-            .lt, .gt, .slash {
-              transform: none;
+            &>.lt {
+              transition: transform 1s;
+              transform: translate(58px, 16px) rotate(90deg);
             }
-          }
-          @media (max-width: 1081px) {
-            width 96px;
-            height: 96px;
-          }
+            &>.gt {
+              transition: transform 1s;
+              transform:  translate(7px, 80px) rotate(-90deg);
+            }
+            &>.slash {
+              transition: transform 1s;
+              transform: translate(13px, 82px) rotate(250deg);
+            }
 
+            &:hover {
+              .lt, .gt, .slash {
+                transform: none;
+              }
+            }
+            @media (max-width: 1081px) {
+              width 96px;
+              height: 96px;
+            }
+
+          }
         }
+
         &>* {
           margin-right: 24px;
           @media (max-width: 1081px) {
@@ -154,11 +159,17 @@ html {
         margin: 0;
       }
 
-      h1, h2, h3 {
-        font-family: title_font;
-        font-weight: 500;
-      }
       article {
+        h1, h2, h3 {
+          font-family: title_font;
+          font-weight: 500;
+          margin-bottom: 4px;
+        }
+        .published_date {
+          color: base01;
+          font-size: 14px;
+          padding-top: 0;
+        }
         code {
           font-family code_font;
         }
