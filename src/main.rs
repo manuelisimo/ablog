@@ -53,9 +53,11 @@ async fn main() -> std::io::Result<()> {
     })
         .keep_alive(75)
         .bind("0.0.0.0:80")?
-        .bind("[::]:80")?
+        // TODO: Troubleshoot docker ip6
+        // .bind("[::]:80")?
         .bind_openssl("0.0.0.0:443", build_builder()?)?
-        .bind_openssl("[::]:443", build_builder()?)?
+        // TODO: Troubleshoot docker ip6
+        // .bind_openssl("[::]:443", build_builder()?)?
         .run()
         .await
 }
