@@ -1,6 +1,6 @@
 [package]
 name = "ablog"
-version = "0.1.0"
+version = "0.3.0"
 authors = ["Manuel Aguilera <manuel@manuel.codes>"]
 edition = "2018"
 license = "LGPL-2.0-or-later"
