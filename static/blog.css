@@ -1,0 +1,237 @@
+/*
+
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #002b36;
+  color: #839496;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #586e75;
+}
+
+/* Solarized Green */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+  color: #859900;
+}
+
+/* Solarized Cyan */
+.hljs-number,
+.hljs-string,
+.hljs-meta .hljs-meta-string,
+.hljs-literal,
+.hljs-doctag,
+.hljs-regexp {
+  color: #2aa198;
+}
+
+/* Solarized Blue */
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #268bd2;
+}
+
+/* Solarized Yellow */
+.hljs-attribute,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title,
+.hljs-type {
+  color: #b58900;
+}
+
+/* Solarized Orange */
+.hljs-symbol,
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-link {
+  color: #cb4b16;
+}
+
+/* Solarized Red */
+.hljs-built_in,
+.hljs-deletion {
+  color: #dc322f;
+}
+
+.hljs-formula {
+  background: #073642;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'mplus';
+  src: url(98d56992657cf84743098e78ef246c5d.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Baskerville';
+  src: url(a27f99ca45522bb3d56d18c0822142d4.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Fira Code';
+  src: url(ec1b7737ca864f4ae6586256ff46b502.woff2);
+  font-weight: 400;
+}
+html {
+  background-color: #073642;
+  color: #93a1a1;
+  font: inherit;
+  font-family: 'Baskerville';
+  font-size: 20px;
+  line-height: 40px;
+}
+html a {
+  color: #eee8d5;
+}
+html a:visited {
+  color: #839496;
+}
+html a:active {
+  color: #fdf6e3;
+}
+html body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  background-color: #073642;
+}
+html body header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: -1px;
+  background-color: #073642;
+  height: 48px;
+  line-height: 48px;
+  font-size: 24px;
+  font-family: 'mplus';
+}
+@media (max-width: 1081px) {
+  html body header {
+    height: 96px;
+    line-height: 96px;
+  }
+}
+html body header .left {
+  display: flex;
+  justify-content: flex-start;
+}
+html body header .left a {
+  text-decoration: none;
+}
+html body header .left a svg {
+  width: 48px;
+  height: 48px;
+  fill: #93a1a1;
+}
+html body header .left a svg>.lt {
+  transition: transform 1s;
+  transform: translate(58px, 16px) rotate(90deg);
+}
+html body header .left a svg>.gt {
+  transition: transform 1s;
+  transform: translate(9px, 78px) rotate(-90deg);
+}
+html body header .left a svg>.slash {
+  transition: transform 1s;
+  transform: translate(13px, 78px) rotate(253deg);
+}
+html body header .left a svg:hover .lt,
+html body header .left a svg:hover .gt,
+html body header .left a svg:hover .slash {
+  transform: none;
+}
+@media (max-width: 1081px) {
+  html body header .left a svg {
+    width: 96px;
+    height: 96px;
+  }
+}
+html body header .left>* {
+  margin-right: 24px;
+}
+@media (max-width: 1081px) {
+  html body header .left>* {
+    margin-right: 48px;
+  }
+}
+html body header .right>* {
+  margin-right: 24px;
+  display: none;
+}
+html body main {
+  max-width: 16.5cm;
+  width: 16.5cm;
+  padding: 1.5rem;
+  margin-left: 8px;
+  margin-right: 8px;
+  background-color: #073642;
+  box-shadow: 0px 8px 12px 4px rgba(0,43,54,0.3);
+}
+@media (max-width: 1081px) and (min-width: 720px) {
+  html body main {
+    max-width: calc(100vw - 16px);
+  }
+}
+@media (max-width: 720px) {
+  html body main {
+    max-width: calc(100vw - 32px);
+    padding: 8px;
+  }
+}
+@media (max-width: 500px) {
+  html body main {
+    margin: 0;
+  }
+}
+html body main article h1,
+html body main article h2,
+html body main article h3 {
+  font-family: 'mplus';
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+html body main article .published_date {
+  color: #586e75;
+  font-size: 14px;
+  padding-top: 0;
+}
+html body main article code {
+  font-family: 'Fira Code';
+}
+html body footer {
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  color: #586e75;
+  margin: 48px 0;
+}
+
