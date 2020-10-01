@@ -1,16 +1,18 @@
 #[macro_use]
 extern crate diesel;
 #[macro_use]
+extern crate diesel_migrations;
+#[macro_use]
 extern crate sailfish_macros;
 
 use actix_web::{web, App, HttpServer, middleware, http};
-use actix_web_middleware_redirect_scheme::RedirectSchemeBuilder;
 use actix_web::middleware::{Logger};
+use actix_web::middleware::errhandlers::ErrorHandlers;
+use actix_web_middleware_redirect_scheme::RedirectSchemeBuilder;
 use actix_files;
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod, SslAcceptorBuilder};
 use std::io::Error;
 use dotenv::dotenv;
-use actix_web::middleware::errhandlers::ErrorHandlers;
 
 mod db;
 mod api;
@@ -19,6 +21,7 @@ mod schema;
 mod images;
 mod error;
 
+embed_migrations!("./migrations");
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
@@ -34,6 +37,10 @@ async fn main() -> std::io::Result<()> {
     let pool = db::init_pool(&database_url)
         .expect("Failed to create db pool");
 
+    let connection = pool.get()
+        .expect("Could not connect to database");
+    embedded_migrations::run_with_output(&connection, &mut std::io::stdout())
+        .expect("Could not run database migrations");
 
     HttpServer::new(move || {
         let error_handlers = ErrorHandlers::new()
