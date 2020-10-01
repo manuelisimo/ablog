@@ -7,9 +7,9 @@ if ('NODE_ENV' in process.env) {
 }
 
 let destination = path.resolve(__dirname, '../static');
-if (mode === 'production') {
-    destination = path.resolve(__dirname, 'dist');
-}
+// if (mode === 'production') {
+//     destination = path.resolve(__dirname, 'dist');
+// }
 
 module.exports = {
     mode,
