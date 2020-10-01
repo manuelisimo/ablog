@@ -1,12 +1,14 @@
 use std::process::Command;
 use std::fs::File;
-use actix_web::{web, HttpResponse, Error, error};
+use actix_web::{web, HttpResponse, Error, error, dev};
 use actix_files::NamedFile;
 use serde::{Serialize, Deserialize};
 use sailfish::TemplateOnce;
 use comrak::{markdown_to_html, ComrakOptions};
 use crate::db;
 use crate::models;
+use crate::error::BlogError;
+use actix_web::middleware::errhandlers::ErrorHandlerResponse;
 
 
 #[derive(TemplateOnce)]
@@ -17,14 +19,13 @@ struct PostList {
 
 pub async fn index(
     pool: web::Data<db::LitePool>
-) -> Result<HttpResponse, Error> {
-    let posts = db::get_posts(&pool)
-        .expect("Something weird happened");
+) -> Result<HttpResponse, BlogError> {
+    let posts = db::get_posts(&pool)?;
     let context = PostList {
         posts,
     };
 
-    Ok(HttpResponse::Ok().body(context.render_once().unwrap()))
+    Ok(HttpResponse::Ok().body(context.render_once()?))
 }
 
 #[derive(Deserialize)]
@@ -88,4 +89,13 @@ pub async fn favicon() -> Result<NamedFile, Error> {
 
     actix_files::NamedFile::from_file(favicon, "favicon.ico")
         .map_err(error::ErrorInternalServerError)
+}
+
+pub fn internal_server_error<B>(res: dev::ServiceResponse<B>,)
+    -> Result<ErrorHandlerResponse<B>, Error> {
+    let response = NamedFile::open("static/errors/500.html")?
+        .set_status_code(res.status())
+        .into_response(res.request())?;
+
+    Ok(ErrorHandlerResponse::Response(res.into_response(response.into_body()),))
 }

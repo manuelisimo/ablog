@@ -3,19 +3,21 @@ extern crate diesel;
 #[macro_use]
 extern crate sailfish_macros;
 
-use actix_web::{web, App, HttpServer, middleware};
+use actix_web::{web, App, HttpServer, middleware, http};
 use actix_web_middleware_redirect_scheme::RedirectSchemeBuilder;
 use actix_web::middleware::{Logger};
 use actix_files;
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod, SslAcceptorBuilder};
 use std::io::Error;
 use dotenv::dotenv;
+use actix_web::middleware::errhandlers::ErrorHandlers;
 
 mod db;
 mod api;
 mod models;
 mod schema;
 mod images;
+mod error;
 
 
 #[actix_rt::main]
@@ -34,10 +36,14 @@ async fn main() -> std::io::Result<()> {
 
 
     HttpServer::new(move || {
+        let error_handlers = ErrorHandlers::new()
+            .handler(http::StatusCode::INTERNAL_SERVER_ERROR, api::internal_server_error);
+
         App::new()
             .data(pool.clone())
             .wrap(RedirectSchemeBuilder::new().build())
             .wrap(Logger::default())
+            .wrap(error_handlers)
             .wrap(middleware::Compress::default())
             .service(web::resource("/")
                 .route(web::get().to(api::index)))
