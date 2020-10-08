@@ -13,9 +13,16 @@ let destination = path.resolve(__dirname, '../static');
 
 module.exports = {
     mode,
-    plugins: [new MiniCssExtractPlugin({
-        filename: 'blog.css'
-    })],
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'blog.css'
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: './vendor/ga.js', to: 'other.js' },
+            ]
+        }),
+    ],
     entry: './blog.js',
     output: {
         filename: 'blog.js',
