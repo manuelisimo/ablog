@@ -91,6 +91,20 @@ pub async fn favicon() -> Result<NamedFile, Error> {
         .map_err(error::ErrorInternalServerError)
 }
 
+pub fn not_found<B>(res: dev::ServiceResponse<B>,) -> Result<ErrorHandlerResponse<B>, Error> {
+    let response = NamedFile::open("static/errors/404.html")?
+        .set_status_code(res.status())
+        .into_response(res.request())?;
+    Ok(ErrorHandlerResponse::Response(res.into_response(response.into_body()),))
+}
+
+pub fn bad_request<B>(res: dev::ServiceResponse<B>,) -> Result<ErrorHandlerResponse<B>, Error> {
+    let response = NamedFile::open("static/errors/400.html")?
+        .set_status_code(res.status())
+        .into_response(res.request())?;
+    Ok(ErrorHandlerResponse::Response(res.into_response(response.into_body()),))
+}
+
 pub fn internal_server_error<B>(res: dev::ServiceResponse<B>,)
     -> Result<ErrorHandlerResponse<B>, Error> {
     let response = NamedFile::open("static/errors/500.html")?

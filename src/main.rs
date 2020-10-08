@@ -44,6 +44,8 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         let error_handlers = ErrorHandlers::new()
+            .handler(http::StatusCode::BAD_REQUEST, api::bad_request)
+            .handler(http::StatusCode::NOT_FOUND, api::not_found)
             .handler(http::StatusCode::INTERNAL_SERVER_ERROR, api::internal_server_error);
 
         App::new()
