@@ -62,7 +62,7 @@ struct Fortune {
  * This was necessary!
  */
 pub async fn fortune() -> Result<HttpResponse, Error> {
-    let command_output =  Command::new("/usr/local/bin/fortune")
+    let command_output =  Command::new("fortune")
         .args(&[
             "25%",
             "art",
