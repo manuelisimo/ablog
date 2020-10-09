@@ -62,7 +62,9 @@ struct Fortune {
  * This was necessary!
  */
 pub async fn fortune() -> Result<HttpResponse, Error> {
-    let command_output =  Command::new("fortune")
+    let fortune_bin = std::env::var("FORTUNE")
+        .map_err(error::ErrorInternalServerError)?;
+    let command_output =  Command::new(fortune_bin)
         .args(&[
             "25%",
             "art",
