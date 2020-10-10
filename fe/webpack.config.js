@@ -17,11 +17,6 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'blog.css'
         }),
-        new CopyPlugin({
-            patterns: [
-                { from: './vendor/ga.js', to: 'other.js' },
-            ]
-        }),
     ],
     entry: './blog.js',
     output: {

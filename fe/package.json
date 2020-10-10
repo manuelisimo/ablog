@@ -3,6 +3,7 @@
   "license": "LGPL-2.0-or-later",
   "scripts": {
     "build": "NODE_ENV=production webpack --mode=production",
+    "push-static": "rsync -a ../static/ blogmachine:/var/ablog/static/",
     "dev": "NODE_ENV=development webpack --mode=development --watch"
   },
   "dependencies": {

@@ -39,9 +39,19 @@ green =     #859900;
 bg_color = base02;
 fg_color = base1;
 
-article_font = 'Baskerville'
+article_font = 'mplus'
 code_font = 'Fira Code'
-title_font = 'mplus'
+title_font = 'Fira Code'
+
+// Breakpoints
+bp_small_max = 26rem;
+bp_medium_min = bp_small_max;
+bp_medium_max = 40rem;
+bp_large_min = bp_medium_max;
+bp_large_max = 74rem;
+bp_xlarge_min = bp_large_max;
+
+header_size = 48px;
 
 html {
   background-color: bg_color;
@@ -49,20 +59,20 @@ html {
 
   font: inherit;
   font-family: article_font;
-  font-size: 20px;
-  line-height: 40px;
+  line-height: 1.6;
 
   a {
-    color: base2;
+    color: base3;
     &:visited {
-      color: base0;
+      color: base2;
     }
     &:active {
-      color: base3;
+      color: yellow;
     }
   }
 
   body {
+    font-size: 120%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,18 +83,12 @@ html {
       width: 100%;
       display: flex;
       justify-content: space-between;
-      position: sticky;
       top: -1px;
       background-color: bg_color;
-      height: 48px;
-      line-height: 48px;
+      height: header_size;
+      line-height: header_size;
       font-size: 24px;
       font-family: title_font;
-
-      @media (max-width: 1081px) {
-        height: 96px;
-        line-height 96px;
-      }
 
       .left {
         display: flex;
@@ -94,8 +98,8 @@ html {
           text-decoration: none;
 
           svg {
-            width: 48px;
-            height: 48px;
+            width: header_size;
+            height: header_size;
             fill: fg_color;
 
             &>.lt {
@@ -116,17 +120,12 @@ html {
                 transform: none;
               }
             }
-            @media (max-width: 1081px) {
-              width 96px;
-              height: 96px;
-            }
-
           }
         }
 
         &>* {
           margin-right: 24px;
-          @media (max-width: 1081px) {
+          @media (min-width: bp_medium_min) {
             margin-right: 48px;
           }
         }
@@ -142,31 +141,38 @@ html {
     }
 
     main {
-      max-width: 16.5cm;
-      width: 16.5cm;
-      padding: 1.5rem;
-      margin-left: 8px;
-      margin-right: 8px;
       background-color: base02;
       box-shadow: 0px 8px 12px 4px alpha(base03, 0.3);
+      width: calc(100% - 32px);
+      padding: 8px;
+      margin: 0;
 
-      @media (max-width: 1081px) and (min-width: 720px) {
-        max-width calc(100vw - 16px);
+      @media (min-width: bp_large_min) {
+        width: 32rem;
+        padding: 3rem;
       }
-      @media (max-width 720px) {
-        max-width calc(100vw - 32px);
-        padding: 8px;
+      @media (min-width: bp_xlarge_min) {
+        width: 45rem;
+        padding: 5rem;
       }
-      @media (max-width: 500px) {
-        margin: 0;
-      }
+
 
       article {
         //width 640px;
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
+          color: base2;
           font-family: title_font;
-          font-weight: 500;
+          font-weight: 400;
           margin-bottom: 4px;
+        }
+        h1 {
+          line-height: 36px;
+          letter-spacing: 0.018em;
+        }
+        h4 {
+          &:before  {
+            content: "→ "
+          }
         }
         .published_date {
           color: base01;
