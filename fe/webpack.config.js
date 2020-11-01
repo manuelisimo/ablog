@@ -32,7 +32,7 @@ module.exports = {
                 }, 'css-loader', 'stylus-loader'],
             },
             {
-                test: /\.ttf$|\.woff2$|\.woff$/,
+                test: /\.ttf$|\.woff2$|\.woff$|\.eot$|\.svg$/,
                 use: [{
                     loader: 'url-loader',
                     options: {

@@ -195,13 +195,9 @@ hljs.initHighlightingOnLoad();
 
 module.exports = hljs;
 
-let r = new XMLHttpRequest();
-r.open('GET', '/fortune', true);
-r.onreadystatechange = () => {
-    if (r.readyState != 4 || r.status != 200) {
-        return;
-    }
-    let fortune = JSON.parse(r.responseText);
-    console.log('💙🎉\n', fortune.fortune);
-};
-r.send();
+fetch('/fortune')
+    .then(response => {
+        response.text()
+            .then(text => JSON.parse(text))
+            .then(fortune => console.log(fortune.fortune));
+    })
