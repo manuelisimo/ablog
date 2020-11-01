@@ -1,0 +1,28 @@
+<header>
+    <div class="left">
+        <a href="/" >
+            <% include!("../../static/logo.svg"); %>
+        </a>
+        <% let name = meta.get("my_name"); %>
+        <% if name.is_some() { %>
+        <span><%= name.unwrap() %></span>
+        <% } else {%>
+        <span>Manuel Aguilera</span>
+        <% }%>
+    </div>
+    <div class="right">
+        <% let twitter = meta.get("my_twitter"); %>
+        <% if twitter.is_some() { %>
+        <a href="https://twitter.com/<%= twitter.unwrap() %>">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <% }%>
+
+        <% let github = meta.get("my_github"); %>
+        <% if github.is_some() { %>
+        <a href="https://github.com/<%= github.unwrap() %>">
+            <i class="fab fa-github"></i>
+        </a>
+        <% }%>
+    </div>
+</header>

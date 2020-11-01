@@ -1,0 +1,15 @@
+<meta property="og:type" content="article" />
+<% let title = meta.get("title"); %>
+<% if title.is_some() { %>
+<meta property="og:title" content="<%= title.unwrap() %>" />
+<% }%>
+
+<% let image = meta.get("image"); %>
+<% if image.is_some() { %>
+<meta property="og:image" content="<%= image.unwrap() %>" />
+<% }%>
+
+<% let description = meta.get("description"); %>
+<% if description.is_some() { %>
+<meta property="og:description" content="<%= description.unwrap() %>" />
+<% }%>

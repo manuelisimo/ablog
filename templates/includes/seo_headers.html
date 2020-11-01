@@ -1,0 +1,25 @@
+<% let title = meta.get("title"); %>
+<% if title.is_some() { %>
+<title><%= title.unwrap() %></title>
+<% } else {%>
+<title>Manuel's Blog</title>
+<% }%>
+
+<% let description = meta.get("description"); %>
+<% if description.is_some() { %>
+<meta name="description" content="<%= description.unwrap() %>"/>
+<% }%>
+
+<% let ga_id = meta.get("ga_id"); %>
+<% if ga_id.is_some() { %>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<%= ga_id.unwrap() %>"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '<%= ga_id.unwrap() %>');
+</script>
+<% }%>
+

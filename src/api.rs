@@ -1,4 +1,5 @@
 use std::process::Command;
+use std::collections::HashMap;
 use std::fs::File;
 use actix_web::{web, HttpResponse, Error, error, dev};
 use actix_files::NamedFile;
@@ -14,18 +15,42 @@ use actix_web::middleware::errhandlers::ErrorHandlerResponse;
 #[derive(TemplateOnce)]
 #[template(path = "landing.html")]
 struct PostList {
-    posts: Vec<models::Post>
+    posts: Vec<models::Post>,
+    meta: HashMap<String, String>,
 }
 
 pub async fn index(
     pool: web::Data<db::LitePool>
 ) -> Result<HttpResponse, BlogError> {
     let posts = db::get_posts(&pool)?;
+    let meta = get_metadata(&posts.get(0).unwrap());
     let context = PostList {
         posts,
+        meta,
     };
 
     Ok(HttpResponse::Ok().body(context.render_once()?))
+}
+
+fn get_metadata(post: &models::Post) -> HashMap<String, String> {
+    let mut meta = HashMap::new();
+    meta.insert(String::from("title"), post.title.clone());
+    meta.insert(String::from("description"), post.intro.clone());
+
+    let my_vars = vec![
+        "GA_ID",
+        "MY_NAME",
+        "MY_GITHUB",
+        "MY_TWITTER",
+    ];
+
+    for name in my_vars {
+        let value = std::env::var(name).ok();
+        if value.is_some() {
+            meta.insert(String::from(name).to_lowercase(), value.unwrap());
+        }
+    }
+    meta
 }
 
 #[derive(Deserialize)]
@@ -37,6 +62,7 @@ pub struct PostParams {
 #[template(path = "post.html")]
 struct PostTemplate {
     post: models::Post,
+    meta: HashMap<String, String>,
 }
 
 pub async fn post(
@@ -46,10 +72,12 @@ pub async fn post(
     let mut post = db::get_post(info.post_web_name.clone(), &pool)
         .map_err(|e| error::ErrorNotFound(e.to_string()))?;
     post.body = markdown_to_html(&post.body, &ComrakOptions::default());
-
+    let meta = get_metadata(&post);
     let context = PostTemplate {
         post,
+        meta,
     };
+
     Ok(HttpResponse::Ok().body(context.render_once().unwrap()))
 }
 
