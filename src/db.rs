@@ -23,6 +23,7 @@ pub fn get_posts(pool: &LitePool) -> Result<Vec<Post>, BlogError> {
 
     post.filter(published.eq(true))
         .limit(20)
+        .order(published_at.desc())
         .load::<Post>(&connection)
         .map_err(|e| e.into())
 }

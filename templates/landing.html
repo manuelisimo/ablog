@@ -11,16 +11,19 @@
     <% include!("./includes/header.html"); %>
     <main>
     <% for post in &posts { %>
-        <div>
+        <article>
             <a href="/post/<%= post.web_name %>">
                 <h3>
                     <%= post.title %>
                 </h3>
             </a>
+            <div class="published_date">
+                <%= post.published_at.unwrap().format("%Y-%m-%d").to_string() %>
+            </div>
             <div>
                 <%= post.intro %>
             </div>
-        </div>
+        </article>
     <% } %>
     </main>
     <% include!("./includes/footer.html"); %>

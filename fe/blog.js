@@ -105,7 +105,7 @@ hljs.registerLanguage('less', require('./node_modules/highlight.js/lib/languages
 // hljs.registerLanguage('livescript', require('./node_modules/highlight.js/lib/languages/livescript'));
 // hljs.registerLanguage('llvm', require('./node_modules/highlight.js/lib/languages/llvm'));
 // hljs.registerLanguage('lsl', require('./node_modules/highlight.js/lib/languages/lsl'));
-// hljs.registerLanguage('lua', require('./node_modules/highlight.js/lib/languages/lua'));
+hljs.registerLanguage('lua', require('./node_modules/highlight.js/lib/languages/lua'));
 hljs.registerLanguage('makefile', require('./node_modules/highlight.js/lib/languages/makefile'));
 // hljs.registerLanguage('mathematica', require('./node_modules/highlight.js/lib/languages/mathematica'));
 // hljs.registerLanguage('matlab', require('./node_modules/highlight.js/lib/languages/matlab'));
