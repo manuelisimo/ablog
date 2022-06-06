@@ -16,7 +16,7 @@ actix-service = "1.0.5"
 actix-web = { version="2", features = ["openssl"]}
 actix-web-middleware-redirect-scheme = "2.3"
 chrono = "0.4.13"
-comrak = "0.8"
+comrak = "0.10"
 diesel = { version = "1.4.4", features = ["chrono", "r2d2", "sqlite"] }
 diesel_migrations = "1.4.0"
 dotenv = "0.15"
