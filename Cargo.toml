@@ -12,7 +12,7 @@ readme = "README.md"
 [dependencies]
 actix-files = "0.2.1"
 actix-rt = "1"
-actix-service = "1.0.5"
+actix-service = "1.0.6"
 actix-web = { version="2", features = ["openssl"]}
 actix-web-middleware-redirect-scheme = "2.3"
 chrono = "0.4.13"
